@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'package:flutter_map_marker_cluster/src/node/marker_cluster_node.dart';
-import 'package:flutter_map_marker_popup/extension_api.dart';
 
 class PolygonOptions {
   final Color color;
@@ -38,20 +37,7 @@ class AnimationsOptions {
   });
 }
 
-class PopupOptions {
-  final PopupBuilder popupBuilder;
-  final PopupController popupController;
-  final PopupSnap popupSnap;
-
-  const PopupOptions({
-    this.popupBuilder,
-    this.popupSnap = PopupSnap.top,
-    this.popupController,
-  });
-}
-
-typedef ClusterWidgetBuilder = Widget Function(
-    BuildContext context, List<Marker> markers);
+typedef ClusterWidgetBuilder = Widget Function(BuildContext context, List<Marker> markers);
 
 class MarkerClusterLayerOptions extends LayerOptions {
   /// Cluster builder
@@ -112,30 +98,25 @@ class MarkerClusterLayerOptions extends LayerOptions {
   /// Function to call when a cluster Marker is tapped
   final void Function(MarkerClusterNode) onClusterTap;
 
-  /// Popup's options that show when tapping markers or via the PopupController.
-  final PopupOptions popupOptions;
-
-  MarkerClusterLayerOptions({
-    @required this.builder,
-    this.markers = const [],
-    this.size = const Size(30, 30),
-    this.computeSize,
-    this.anchor,
-    this.maxClusterRadius = 80,
-    this.animationsOptions = const AnimationsOptions(),
-    this.fitBoundsOptions =
-        const FitBoundsOptions(padding: EdgeInsets.all(12.0)),
-    this.zoomToBoundsOnClick = true,
-    this.centerMarkerOnClick = true,
-    this.spiderfyCircleRadius = 40,
-    this.spiderfySpiralDistanceMultiplier = 1,
-    this.circleSpiralSwitchover = 9,
-    this.spiderfyShapePositions,
-    this.polygonOptions = const PolygonOptions(),
-    this.showPolygon = true,
-    this.onMarkerTap,
-    this.onClusterTap,
-    this.onMarkersClustered,
-    this.popupOptions,
-  }) : assert(builder != null);
+  MarkerClusterLayerOptions(
+      {@required this.builder,
+      this.markers = const [],
+      this.size = const Size(30, 30),
+      this.computeSize,
+      this.anchor,
+      this.maxClusterRadius = 80,
+      this.animationsOptions = const AnimationsOptions(),
+      this.fitBoundsOptions = const FitBoundsOptions(padding: EdgeInsets.all(12.0)),
+      this.zoomToBoundsOnClick = true,
+      this.centerMarkerOnClick = true,
+      this.spiderfyCircleRadius = 40,
+      this.spiderfySpiralDistanceMultiplier = 1,
+      this.circleSpiralSwitchover = 9,
+      this.spiderfyShapePositions,
+      this.polygonOptions = const PolygonOptions(),
+      this.showPolygon = true,
+      this.onMarkerTap,
+      this.onClusterTap,
+      this.onMarkersClustered})
+      : assert(builder != null);
 }

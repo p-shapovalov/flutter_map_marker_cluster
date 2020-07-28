@@ -25,8 +25,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final PopupController _popupController = PopupController();
-
   List<Marker> markers;
   int pointIndex;
   List points = [
@@ -112,15 +110,10 @@ class _HomePageState extends State<HomePage> {
         },
       ),
       body: FlutterMap(
-        options: MapOptions(
-          center: points[0],
-          zoom: 5,
-          plugins: [
-            MarkerClusterPlugin(),
-          ],
-          onTap: (_) => _popupController
-              .hidePopup(), // Hide popup when the map is tapped.
-        ),
+        options: MapOptions(center: points[0], zoom: 5, plugins: [
+          MarkerClusterPlugin(),
+        ] // Hide popup when the map is tapped.
+            ),
         layers: [
           TileLayerOptions(
             urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -135,23 +128,7 @@ class _HomePageState extends State<HomePage> {
             ),
             markers: markers,
             polygonOptions: PolygonOptions(
-                borderColor: Colors.blueAccent,
-                color: Colors.black12,
-                borderStrokeWidth: 3),
-            popupOptions: PopupOptions(
-                popupSnap: PopupSnap.top,
-                popupController: _popupController,
-                popupBuilder: (_, marker) => Container(
-                      width: 200,
-                      height: 100,
-                      color: Colors.white,
-                      child: GestureDetector(
-                        onTap: () => debugPrint("Popup tap!"),
-                        child: Text(
-                          "Container popup for marker at ${marker.point}",
-                        ),
-                      ),
-                    )),
+                borderColor: Colors.blueAccent, color: Colors.black12, borderStrokeWidth: 3),
             builder: (context, markers) {
               return FloatingActionButton(
                 child: Text(markers.length.toString()),
