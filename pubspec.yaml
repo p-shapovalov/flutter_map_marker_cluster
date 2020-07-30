@@ -16,7 +16,7 @@ dependencies:
   flutter_map:
     git:
       url: https://github.com/p-shapovalov/flutter_map.git  
-      ref: 969f8c1790b2f283d6729dc629953991844e1868
+      ref: 6525abd92ce013dc14f8e0146b03ed713b268efe
   latlong: ^0.6.1
 
 dev_dependencies:
